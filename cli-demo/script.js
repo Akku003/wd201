@@ -32,6 +32,7 @@
 //     console.log('Unknown operation');
 // }
 const minimist = require('minimist');
+// eslint-disable-next-line no-undef
 const args = minimist(process.argv.slice(2));
 
 // Now we can access our arguments by name
