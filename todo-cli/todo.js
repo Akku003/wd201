@@ -90,52 +90,63 @@
 // // console.log("\n\n")
 
 const todoList = () => {
-    let all = [];
+  let all = [];
 
-    const add = (todoItem) => {
-        all.push(todoItem);
-    };
+  const add = (todoItem) => {
+    all.push(todoItem);
+  };
 
-    const markAsComplete = (index) => {
-        all[index].completed = true;
-    };
+  const markAsComplete = (index) => {
+    all[index].completed = true;
+  };
 
-    const overdue = () => {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0); // Normalize time to midnight
-        return all.filter((item) => {
-            const dueDate = new Date(item.dueDate);
-            dueDate.setHours(0, 0, 0, 0);
-            return dueDate < today && !item.completed;
-        });
-    };
+  const overdue = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize time to midnight
+    return all.filter((item) => {
+      const dueDate = new Date(item.dueDate);
+      dueDate.setHours(0, 0, 0, 0);
+      return dueDate < today && !item.completed;
+    });
+  };
 
-    const dueToday = () => {
-        const today = new Date().toISOString().split("T")[0];
-        return all.filter((item) => item.dueDate === today);
-    };
+  const dueToday = () => {
+    const today = new Date().toISOString().split("T")[0];
+    return all.filter((item) => item.dueDate === today);
+  };
 
-    const dueLater = () => {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        return all.filter((item) => {
-            const dueDate = new Date(item.dueDate);
-            dueDate.setHours(0, 0, 0, 0);
-            return dueDate > today && !item.completed;
-        });
-    };
+  const dueLater = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return all.filter((item) => {
+      const dueDate = new Date(item.dueDate);
+      dueDate.setHours(0, 0, 0, 0);
+      return dueDate > today && !item.completed;
+    });
+  };
 
-    const toDisplayableList = (list) => {
-        return list
-            .map((item) => {
-                const status = item.completed ? "[x]" : "[ ]";
-                const dueDate = item.dueDate === new Date().toISOString().split("T")[0] ? "" : item.dueDate;
-                return `${status} ${item.title} ${dueDate}`.trim();
-            })
-            .join("\n");
-    };
+  const toDisplayableList = (list) => {
+    return list
+      .map((item) => {
+        const status = item.completed ? "[x]" : "[ ]";
+        const dueDate =
+          item.dueDate === new Date().toISOString().split("T")[0]
+            ? ""
+            : item.dueDate;
+        return `${status} ${item.title} ${dueDate}`.trim();
+      })
+      .join("\n");
+  };
 
-    return { all, add, markAsComplete, overdue, dueToday, dueLater, toDisplayableList };
+  return {
+    all,
+    add,
+    markAsComplete,
+    overdue,
+    dueToday,
+    dueLater,
+    toDisplayableList,
+  };
 };
 
 module.exports = todoList;
