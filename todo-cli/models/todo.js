@@ -82,13 +82,9 @@ module.exports = (sequelize, DataTypes) => {
     displayableString() {
       const today = new Date();
       const dueDate = new Date(this.dueDate);
+      const isDueToday = dueDate.toDateString() === today.toDateString();
       let checkbox = this.completed ? "[x]" : "[ ]";
-      let displayDate = '';
-      
-      if (dueDate.toDateString() !== today.toDateString()) {
-        displayDate = this.dueDate;
-      }
-      
+      const displayDate = isDueToday ? "" : this.dueDate;
       return `${this.id}. ${checkbox} ${this.title} ${displayDate}`.trim();
     }
   }
