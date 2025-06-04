@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       return this.create({ title: title, dueDate: dueDate, completed: false });
     }
 
-    static getTodos(){
+    static getTodos() {
       return this.findAll();
     }
 
@@ -26,7 +26,13 @@ module.exports = (sequelize, DataTypes) => {
   Todo.init(
     {
       title: DataTypes.STRING,
-      dueDate: DataTypes.DATEONLY,
+      dueDate: {
+        type: DataTypes.DATEONLY,
+        get() {
+          const rawValue = this.getDataValue('dueDate');
+          return rawValue ? new Date(rawValue) : null;
+        }
+      },
       completed: DataTypes.BOOLEAN,
     },
     {

@@ -43,11 +43,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", async (request, response) => {
   try {
-    const allTodos = await Todo.findAll({ order: [['id', 'ASC']] });
+    const allTodos = await Todo.findAll({
+      order: [['id', 'ASC']],
+      raw: true // Get plain objects instead of model instances
+    });
+
+    // Convert dates to proper format
+    const processedTodos = allTodos.map(todo => ({
+      ...todo,
+      dueDate: todo.dueDate ? new Date(todo.dueDate) : null
+    }));
+
     if (request.accepts("html")) {
-      response.render('index', { allTodos });
+      response.render('index', { allTodos: processedTodos });
     } else {
-      response.json({ allTodos });
+      response.json({ allTodos: processedTodos });
     }
   } catch (error) {
     console.error(error);

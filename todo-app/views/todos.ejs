@@ -18,7 +18,9 @@
                     <%= todo.title %>
                 </td>
                 <td>
-                    <%= todo.dueDate.toISOString().split('T')[0] %>
+                    <% let displayDate='' ; if (todo.dueDate) { const dateObj=new Date(todo.dueDate);
+                        displayDate=isNaN(dateObj) ? todo.dueDate : dateObj.toISOString().split('T')[0]; } %>
+                        <%= displayDate %>
                 </td>
                 <td>
                     <%= todo.completed ? 'Completed' : 'Pending' %>

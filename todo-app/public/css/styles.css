@@ -3,6 +3,23 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
 .todo-table {
     width: 100%;
     border-collapse: collapse;
