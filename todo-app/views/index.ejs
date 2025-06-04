@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO APP</title>
     <link href="./css/styles.css" rel="stylesheet">
 </head>
+
 <body>
-  <%- include('header') %>
-    <table>
-        <% allTodos.forEach(function(todo) { %>
-        <tr>
-            <td>
-                <%= todo.title %>
-            </td>
-        </tr>
-        <% }); %>
-    </table>
+    <%- include('header') %>
+        <table>
+            <% allTodos.forEach(function(todo) { %>
+                <tr>
+                    <td>
+                        <%= todo.title %>
+                    </td>
+                </tr>
+                <% }); %>
+
+                    <%- include('header') %>
+
+                        <div class="container">
+                            <h1>Todo List</h1>
+
+                            <!-- Include the todos table -->
+                            <%- include('todos') %>
+
+                                <!-- Form for new todos can go here -->
+                        </div>
+
+                        <%- include('footer') %>
+        </table>
 </body>
+
 </html>

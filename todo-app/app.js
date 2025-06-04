@@ -28,16 +28,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   response.send("Hello World");
 // });
 
+// app.get("/", async (request, response) => {
+//   const allTodos = await Todo.findAll();
+//   if (request.accepts("html")) {
+//     response.render('index', {
+//       allTodos
+//     });
+//   } else {
+//     response.json({
+//       allTodos
+//     });
+//   }
+// });
+
 app.get("/", async (request, response) => {
-  const allTodos = await Todo.findAll();
-  if (request.accepts("html")) {
-    response.render('index', {
-      allTodos
-    });
-  } else {
-    response.json({
-      allTodos
-    });
+  try {
+    const allTodos = await Todo.findAll({ order: [['id', 'ASC']] });
+    if (request.accepts("html")) {
+      response.render('index', { allTodos });
+    } else {
+      response.json({ allTodos });
+    }
+  } catch (error) {
+    console.error(error);
+    response.status(500).send("Internal Server Error");
   }
 });
 
