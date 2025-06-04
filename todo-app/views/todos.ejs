@@ -1,10 +1,15 @@
 <!-- views/todos.ejs -->
 <div class="todo-sections">
+    <!-- 1. Separate h5 tags and count spans (no nested span) -->
+    <!-- 2. Remove extra classes (overdue, due-today, due-later) -->
+    <!-- 3. Ensure exact section order: Overdue, Due Today, Due Later -->
+
     <!-- Overdue Section -->
-    <div class="section overdue">
-        <h5>Overdue <span id="count-overdue">
-                <%= overdue.length %>
-            </span></h5>
+    <div class="section">
+        <h5>Overdue</h5>
+        <span id="count-overdue">
+            <%= overdue.length %>
+        </span>
         <ul>
             <% overdue.forEach(todo=> { %>
                 <li>
@@ -19,10 +24,11 @@
     </div>
 
     <!-- Due Today Section -->
-    <div class="section due-today">
-        <h5>Due Today <span id="count-due-today">
-                <%= dueToday.length %>
-            </span></h5>
+    <div class="section">
+        <h5>Due Today</h5>
+        <span id="count-due-today">
+            <%= dueToday.length %>
+        </span>
         <ul>
             <% dueToday.forEach(todo=> { %>
                 <li>
@@ -34,10 +40,11 @@
     </div>
 
     <!-- Due Later Section -->
-    <div class="section due-later">
-        <h5>Due Later <span id="count-due-later">
-                <%= dueLater.length %>
-            </span></h5>
+    <div class="section">
+        <h5>Due Later</h5>
+        <span id="count-due-later">
+            <%= dueLater.length %>
+        </span>
         <ul>
             <% dueLater.forEach(todo=> { %>
                 <li>
