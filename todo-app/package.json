@@ -7,7 +7,7 @@
     "start": "nodemon -e js,ejs",
     "pretest": "NODE_ENV=test sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:create",
     "test": "jest",
-    "prepare": "husky"
+    "prepare": "if [ -d .git ]; then husky; fi"
   },
   "author": "Akku",
   "license": "ISC",
