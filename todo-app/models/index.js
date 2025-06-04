@@ -9,6 +9,9 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(path.join(__dirname, '../config/config.json'))[env];
 const db = {};
 
+console.log("Using Database URL:", process.env.DATABASE_URL);
+console.log("Current directory:", __dirname);
+
 let sequelize;
 sequelize = new Sequelize(
   config.database,
