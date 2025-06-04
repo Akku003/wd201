@@ -1,58 +1,78 @@
-<!-- views/todos.ejs -->
-<div class="todo-sections">
-    <!-- 1. Separate h5 tags and count spans (no nested span) -->
-    <!-- 2. Remove extra classes (overdue, due-today, due-later) -->
-    <!-- 3. Ensure exact section order: Overdue, Due Today, Due Later -->
-
+<div class="grid md:grid-cols-3 gap-6">
     <!-- Overdue Section -->
-    <div class="section">
-        <h5>Overdue</h5>
-        <span id="count-overdue">
-            <%= overdue.length %>
-        </span>
-        <ul>
+    <div class="bg-red-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-4">
+            <h5 class="text-lg font-semibold text-red-700">Overdue</h5>
+            <span id="count-overdue" class="bg-red-200 text-red-800 px-3 py-1 rounded-full text-sm">
+                <%= overdue.length %>
+            </span>
+        </div>
+        <ul class="space-y-3">
             <% overdue.forEach(todo=> { %>
-                <li>
-                    <input type="checkbox" <%=todo.completed ? 'checked' : '' %> disabled>
-                    <%= todo.title %>
-                        <span class="due-date">
-                            <%= todo.dueDate %>
+                <li class="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
+                    <input type="checkbox" <%=todo.completed ? 'checked' : '' %>
+                    disabled
+                    class="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    >
+                    <div>
+                        <span class="block text-gray-800">
+                            <%= todo.title %>
                         </span>
+                        <span class="block text-xs text-gray-500 mt-1">
+                            <%= new Date(todo.dueDate).toLocaleDateString('en-GB') %>
+                        </span>
+                    </div>
                 </li>
                 <% }); %>
         </ul>
     </div>
 
     <!-- Due Today Section -->
-    <div class="section">
-        <h5>Due Today</h5>
-        <span id="count-due-today">
-            <%= dueToday.length %>
-        </span>
-        <ul>
+    <div class="bg-blue-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-4">
+            <h5 class="text-lg font-semibold text-blue-700">Due Today</h5>
+            <span id="count-due-today" class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm">
+                <%= dueToday.length %>
+            </span>
+        </div>
+        <ul class="space-y-3">
             <% dueToday.forEach(todo=> { %>
-                <li>
-                    <input type="checkbox" <%=todo.completed ? 'checked' : '' %> disabled>
-                    <%= todo.title %>
+                <li class="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
+                    <input type="checkbox" <%=todo.completed ? 'checked' : '' %>
+                    disabled
+                    class="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    >
+                    <span class="text-gray-800">
+                        <%= todo.title %>
+                    </span>
                 </li>
                 <% }); %>
         </ul>
     </div>
 
     <!-- Due Later Section -->
-    <div class="section">
-        <h5>Due Later</h5>
-        <span id="count-due-later">
-            <%= dueLater.length %>
-        </span>
-        <ul>
+    <div class="bg-green-50 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-4">
+            <h5 class="text-lg font-semibold text-green-700">Due Later</h5>
+            <span id="count-due-later" class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm">
+                <%= dueLater.length %>
+            </span>
+        </div>
+        <ul class="space-y-3">
             <% dueLater.forEach(todo=> { %>
-                <li>
-                    <input type="checkbox" <%=todo.completed ? 'checked' : '' %> disabled>
-                    <%= todo.title %>
-                        <span class="due-date">
-                            <%= todo.dueDate %>
+                <li class="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm">
+                    <input type="checkbox" <%=todo.completed ? 'checked' : '' %>
+                    disabled
+                    class="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    >
+                    <div>
+                        <span class="block text-gray-800">
+                            <%= todo.title %>
                         </span>
+                        <span class="block text-xs text-gray-500 mt-1">
+                            <%= new Date(todo.dueDate).toLocaleDateString('en-GB') %>
+                        </span>
+                    </div>
                 </li>
                 <% }); %>
         </ul>

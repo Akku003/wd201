@@ -1,23 +1,35 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Todo App</title>
-  <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
-  <%- include('header') %>
 
-  <div class="container">
-    <form action="/todos" method="POST" class="todo-form">
-      <input type="text" name="title" placeholder="What needs to be done?" required>
-      <input type="date" name="dueDate">
-      <button type="submit">Add</button>
-    </form>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <%- include('header') %>
 
-    <%- include('todos') %>
-  </div>
+            <div class="bg-white rounded-lg shadow-md p-6 mt-6">
+                <form action="/todos" method="POST" class="flex gap-4 mb-8">
+                    <input type="text" name="title" placeholder="What's next?" required
+                        class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="date" name="dueDate"
+                        class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors">
+                        Add
+                    </button>
+                </form>
 
-  <%- include('footer') %>
+                <%- include('todos') %>
+            </div>
+
+            <%- include('footer') %>
+    </div>
 </body>
+
 </html>
