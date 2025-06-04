@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:prod":"node index.js",
+    "start:prod": "NODE_ENV=production node index.js",
     "start": "nodemon -e js,ejs",
     "pretest": "NODE_ENV=test sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:create",
     "test": "jest",

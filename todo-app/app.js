@@ -1,14 +1,29 @@
 const express = require("express");
 const app = express();
-const path=require("path");
+const path = require("path");
 const { Todo } = require("./models");
 
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
-app.set("view engine","ejs");
-app.use(express.static(path.join(__dirname,'public')));
+const db = require("./models/index");
+
+// Add this before starting the server
+db.sequelize.authenticate()
+  .then(() => {
+    console.log('Database connection has been established successfully.');
+    app.listen(3000, () => {
+      console.log("Started express server at port 3000");
+    });
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+    process.exit(1);
+  });
+
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, 'public')));
 // app.get("/", function (request, response) {
 //   response.send("Hello World");
 // });

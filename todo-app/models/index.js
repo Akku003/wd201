@@ -13,6 +13,14 @@ console.log("Using Database URL:", process.env.DATABASE_URL);
 console.log("Current directory:", __dirname);
 
 let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], {
+    dialect: config.dialect,
+    protocol: config.protocol,
+    dialectOptions: config.dialectOptions,
+    logging: false // Disable logging for production
+  });
+}else{
 sequelize = new Sequelize(
   config.database,
   config.username,
@@ -23,6 +31,7 @@ sequelize = new Sequelize(
     // Add other config options here if needed
   }
 );
+}
 console.log('Current environment:', env);
 console.log('Loaded config:', config);
 
