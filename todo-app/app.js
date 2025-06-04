@@ -41,35 +41,40 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   }
 // });
 
+// app.js
 app.get("/", async (request, response) => {
   try {
-    const allTodos = await Todo.findAll({
-      order: [['id', 'ASC']],
-      raw: true // Get plain objects instead of model instances
-    });
-
-    // Convert dates to proper format
-    const processedTodos = allTodos.map(todo => ({
-      ...todo,
-      dueDate: todo.dueDate ? new Date(todo.dueDate) : null
-    }));
+    const [overdue, dueToday, dueLater] = await Promise.all([
+      Todo.getOverdueTodos(),
+      Todo.getDueTodayTodos(),
+      Todo.getDueLaterTodos()
+    ]);
 
     if (request.accepts("html")) {
-      response.render('index', { allTodos: processedTodos });
+      response.render("index", {
+        overdue,
+        dueToday,
+        dueLater,
+        today: new Date().toISOString().split('T')[0]
+      });
     } else {
-      response.json({ allTodos: processedTodos });
+      response.json({ overdue, dueToday, dueLater });
     }
   } catch (error) {
     console.error(error);
-    response.status(500).send("Internal Server Error");
+    return response.status(422).json(error);
   }
 });
 
-app.get("/todos", async function (_request, response) {
-  console.log("Processing list of all Todos ...");
+// app.js
+app.post("/todos", async function (request, response) {
   try {
-    const todos = await Todo.findAll();
-    return response.send(todos);
+    await Todo.addTodo({
+      title: request.body.title,
+      dueDate: request.body.dueDate || new Date().toISOString().split('T')[0],
+      completed: false
+    });
+    return response.redirect("/");
   } catch (error) {
     console.log(error);
     return response.status(422).json(error);

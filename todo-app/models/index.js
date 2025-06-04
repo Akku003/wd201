@@ -18,19 +18,20 @@ if (config.use_env_variable) {
     dialect: config.dialect,
     protocol: config.protocol,
     dialectOptions: config.dialectOptions,
-    logging: false // Disable logging for production
+    logging: console.log // Disable logging for production
   });
-}else{
-sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  {
-    host: config.host,
-    dialect: config.dialect,
-    // Add other config options here if needed
-  }
-);
+} else {
+  sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    {
+      host: config.host,
+      dialect: config.dialect,
+      logging: console.log
+      // Add other config options here if needed
+    }
+  );
 }
 console.log('Current environment:', env);
 console.log('Loaded config:', config);

@@ -1,23 +1,23 @@
 <!-- views/index.ejs -->
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
-    <link rel="stylesheet" href="/css/styles.css">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
-
 <body>
-    <%- include('header') %>
+  <%- include('header') %>
 
-        <main class="container">
-            <!-- Todos table will be inserted here -->
-            <%- include('todos') %>
-        </main>
+  <div class="container">
+    <form action="/todos" method="POST" class="todo-form">
+      <input type="text" name="title" placeholder="What needs to be done?" required>
+      <input type="date" name="dueDate">
+      <button type="submit">Add</button>
+    </form>
 
-        <%- include('footer') %>
+    <%- include('todos') %>
+  </div>
+
+  <%- include('footer') %>
 </body>
-
 </html>

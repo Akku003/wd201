@@ -43,3 +43,49 @@ footer {
     padding: 20px;
     background-color: #f8f9fa;
 }
+
+.todo-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.section {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.section h5 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.todo-form {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.todo-form input[type="text"] {
+    flex-grow: 1;
+    padding: 0.5rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.due-date {
+    color: #666;
+    font-size: 0.8rem;
+}
